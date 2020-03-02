@@ -11,27 +11,13 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-            <xsd:element name="SubjectResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Confirmation" type="xsd:string"/>       
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      
+            
       <xsd:element name="StudentRequest">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="StudentName" type="xsd:string"/>
             <xsd:element name="StudentAddress" type="xsd:string"/>
             <xsd:element name="StudentID" type="xsd:string"/>            
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-            <xsd:element name="StudentResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="Confirmation" type="xsd:string"/>       
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -45,7 +31,7 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-            <xsd:element name="AssessmentResponse">
+            <xsd:element name="ConfirmationResponse">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="Confirmation" type="xsd:string"/>       
@@ -56,24 +42,16 @@
       
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="SubjectResponse">
-    <wsdl:part name="recievedSubject" element="tns:SubjectResponse">
+  <wsdl:message name="ConfirmationResponse">
+    <wsdl:part name="confirmer" element="tns:ConfirmationResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="StudentRequest">
     <wsdl:part name="sentStudent" element="tns:StudentRequest">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="StudentResponse">
-    <wsdl:part name="recievedStudent" element="tns:StudentResponse">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="SubjectRequest">
     <wsdl:part name="sentSubject" element="tns:SubjectRequest">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="AssessmentResponse">
-    <wsdl:part name="recievedAssessment" element="tns:AssessmentResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="AssessmentRequest">
@@ -84,19 +62,19 @@
     <wsdl:operation name="RegisterSubject">
       <wsdl:input message="tns:SubjectRequest">
     </wsdl:input>
-      <wsdl:output message="tns:SubjectResponse">
+      <wsdl:output message="tns:ConfirmationResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterStudent">
       <wsdl:input message="tns:StudentRequest">
     </wsdl:input>
-      <wsdl:output message="tns:StudentResponse">
+      <wsdl:output message="tns:ConfirmationResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="StartAssessment">
       <wsdl:input message="tns:AssessmentRequest">
     </wsdl:input>
-      <wsdl:output message="tns:AssessmentResponse">
+      <wsdl:output message="tns:ConfirmationResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>

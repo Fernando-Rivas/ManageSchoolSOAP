@@ -38,27 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SubjectResponse }
-     * 
-     */
-    public SubjectResponse createSubjectResponse() {
-        return new SubjectResponse();
-    }
-
-    /**
      * Create an instance of {@link StudentRequest }
      * 
      */
     public StudentRequest createStudentRequest() {
         return new StudentRequest();
-    }
-
-    /**
-     * Create an instance of {@link StudentResponse }
-     * 
-     */
-    public StudentResponse createStudentResponse() {
-        return new StudentResponse();
     }
 
     /**
@@ -70,11 +54,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AssessmentResponse }
+     * Create an instance of {@link ConfirmationResponse }
      * 
      */
-    public AssessmentResponse createAssessmentResponse() {
-        return new AssessmentResponse();
+    public ConfirmationResponse createConfirmationResponse() {
+        return new ConfirmationResponse();
     }
 
 }

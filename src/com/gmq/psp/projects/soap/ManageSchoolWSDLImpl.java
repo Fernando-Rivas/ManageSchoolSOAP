@@ -8,9 +8,10 @@ public class ManageSchoolWSDLImpl implements ManageSchoolWSDL {
 	ArrayList<StudentRequest> StudentList = new ArrayList<StudentRequest>();
 	ArrayList<AssessmentRequest> AssessmentList = new ArrayList<AssessmentRequest>();
 	
+	static ConfirmationResponse confirmer = new ConfirmationResponse();
+	
 	@Override
-	public SubjectResponse registerSubject(SubjectRequest sentSubject) {
-		SubjectResponse confirmer = new SubjectResponse();
+	public ConfirmationResponse registerSubject(SubjectRequest sentSubject) {
 		if(validSubject(sentSubject)!=null) {
 			confirmer.setConfirmation(validSubject(sentSubject) + " already in use.");
 		}else {
@@ -21,15 +22,14 @@ public class ManageSchoolWSDLImpl implements ManageSchoolWSDL {
 	}
 
 	@Override
-	public StudentResponse registerStudent(StudentRequest sentStudent) {
-		StudentResponse confirmer = new StudentResponse();
+	public ConfirmationResponse registerStudent(StudentRequest sentStudent) {
 		String newStudentID = sentStudent.getStudentID();
 		if(validId(newStudentID)) {
 			if(studentIdExists(newStudentID)) {
 				confirmer.setConfirmation("ID already in use.");
 			}else {
 				StudentList.add(sentStudent);
-				confirmer.setConfirmation(sentStudent+" with identification number: " + newStudentID +" has been added to the student list.");
+				confirmer.setConfirmation(sentStudent.getStudentName() +" with identification number: " + newStudentID +" has been added to the student list.");
 			}
 			
 		}else {
@@ -40,23 +40,26 @@ public class ManageSchoolWSDLImpl implements ManageSchoolWSDL {
 	}
 
 	@Override
-	public AssessmentResponse startAssessment(AssessmentRequest sentAssessment) {
-		AssessmentResponse confirmer = new AssessmentResponse();
-		String[] invalidData = new String[5];
+	public ConfirmationResponse startAssessment(AssessmentRequest sentAssessment) {
+		String[] invalidData = new String[4];
 		int invalid = 0;
 		
 		if(sentAssessment.getFinalGrade()<0||sentAssessment.getFinalGrade()>10) {
 			invalidData[invalid] = "grade out of bounds";
+			invalid++;
 		}
 		if(validId(sentAssessment.getAssessedStudent())) {
 			if(!(studentIdExists(sentAssessment.getAssessedStudent()))) {
 				invalidData[invalid] = "student does not exist";
+				invalid++;
 			}
 		}else {
 			invalidData[invalid] = "invalid ID format";
+			invalid++;
 		}
 		if(!(subjectIdExists(sentAssessment.getAssessedSubject()))) {
 			invalidData[invalid] = "subject does not exist";
+			invalid++;
 		}
 		if(invalid!=0) {
 			String invalidMessage = "The following problems were found with your request: ";
@@ -90,7 +93,7 @@ public class ManageSchoolWSDLImpl implements ManageSchoolWSDL {
 		if(id.length()!=9) {
 			return false;
 		}		
-		if(!(id.matches("\\d{8][A-Z]$"))) {	
+		if(!(id.matches("\\d{8}[A-Z]"))) {	
 			return false;
 		}		
 		return true;
