@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="manageSchoolWSDL" targetNamespace="http://www.example.org/manageSchoolWSDL/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/manageSchoolWSDL/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/manageSchoolWSDL/">
+      
+      <xsd:element name="SubjectRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="SubjectName" type="xsd:string"/>
+            <xsd:element name="SubjectID" type="xsd:int"/>            
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element name="SubjectResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Confirmation" type="xsd:string"/>       
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="StudentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="StudentName" type="xsd:string"/>
+            <xsd:element name="StudentAddress" type="xsd:string"/>
+            <xsd:element name="StudentID" type="xsd:string"/>            
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element name="StudentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Confirmation" type="xsd:string"/>       
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="AssessmentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="AssessedSubject" type="xsd:string"/>
+            <xsd:element name="AssessedStudent" type="xsd:string"/>
+            <xsd:element name="FinalGrade" type="xsd:int"/>            
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element name="AssessmentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Confirmation" type="xsd:string"/>       
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SubjectResponse">
+    <wsdl:part name="recievedSubject" element="tns:SubjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="StudentRequest">
+    <wsdl:part name="sentStudent" element="tns:StudentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="StudentResponse">
+    <wsdl:part name="recievedStudent" element="tns:StudentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SubjectRequest">
+    <wsdl:part name="sentSubject" element="tns:SubjectRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AssessmentResponse">
+    <wsdl:part name="recievedAssessment" element="tns:AssessmentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AssessmentRequest">
+    <wsdl:part name="sentAssessment" element="tns:AssessmentRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="manageSchoolWSDL">
+    <wsdl:operation name="RegisterSubject">
+      <wsdl:input message="tns:SubjectRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:SubjectResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterStudent">
+      <wsdl:input message="tns:StudentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:StudentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartAssessment">
+      <wsdl:input message="tns:AssessmentRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:AssessmentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="manageSchoolWSDLSOAP" type="tns:manageSchoolWSDL">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RegisterSubject">
+      <soap:operation soapAction="http://www.example.org/manageSchoolWSDL/RegisterSubject"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterStudent">
+      <soap:operation soapAction="http://www.example.org/manageSchoolWSDL/RegisterStudent"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartAssessment">
+      <soap:operation soapAction="http://www.example.org/manageSchoolWSDL/StartAssessment"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="manageSchoolWSDL">
+    <wsdl:port name="manageSchoolWSDLSOAP" binding="tns:manageSchoolWSDLSOAP">
+      <soap:address location="http://localhost:8080/manageSchool/services/manageSchoolWSDLSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
